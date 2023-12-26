@@ -107,6 +107,7 @@ for slide in slides:
 #Fills information gathered from indeed and stores within Google Sheets sheet titled Job Postings Information
 sh = gc.open('Job Postings Information')
 worksheet = sh.sheet1
+worksheet.clear()
 worksheet.update_cell(1, 1, 'Company Name')
 worksheet.update_cell(1, 2, 'Job Title')
 worksheet.update_cell(1, 3, 'Application Link')
