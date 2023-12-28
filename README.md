@@ -6,3 +6,5 @@ Job Search Title and Job Search Location
 
 
 *Currently supports scraping of listings from indeed.com*
+
+*Works on the Google Chrome webbrowser*
