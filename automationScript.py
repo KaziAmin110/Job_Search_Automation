@@ -86,23 +86,27 @@ companyNames = []
 jobTitles = []
 applicationLinks = []
 
-slides = driver.find_elements(By.CSS_SELECTOR, 'li.css-5lfssm.eu4oa1w0')
+
+slides = driver.find_elements(By.CSS_SELECTOR, 'li.eu4oa1w0')
 
 i = 1
 #Scrapes Company Names, Job Titles and Application Links and appends to above lists
+#Prev jobTitleInfo = driver.find_element(By.CSS_SELECTOR, '#mosaic-provider-jobcards > ul > li:nth-child(' + str(i) + ') > div.cardOutline > div.slider_container.css-8xisqv.eu4oa1w0 > div > div.slider_item.css-kyg8or.eu4oa1w0 > div > table.jobCard_mainContent.big6_visualChanges > tbody > tr > td > div.e37uo190 > h2 > a > span')
+
 for slide in slides:
     try:
-        jobTitleInfo = driver.find_element(By.CSS_SELECTOR, '#mosaic-provider-jobcards > ul > li:nth-child(' + str(i) + ') > div.cardOutline > div.slider_container.css-8xisqv.eu4oa1w0 > div > div.slider_item.css-kyg8or.eu4oa1w0 > div > table.jobCard_mainContent.big6_visualChanges > tbody > tr > td > div.e37uo190 > h2 > a > span')
-        companyNameInfo = driver.find_element(By.CSS_SELECTOR, '#mosaic-provider-jobcards > ul > li:nth-child(' + str(i) + ') > div.cardOutline > div.slider_container.css-8xisqv.eu4oa1w0 > div > div.slider_item.css-kyg8or.eu4oa1w0 > div > table.jobCard_mainContent.big6_visualChanges > tbody > tr > td > div.company_location > div > span')
+        jobTitleInfo = driver.find_element(By.CSS_SELECTOR, '#mosaic-provider-jobcards > ul > li:nth-child(' + str(i) + ') > div.cardOutline > div.slider_container.eu4oa1w0 > div > div.slider_item.eu4oa1w0 > div > table.big6_visualChanges > tbody > tr > td > div.e37uo190 > h2 > a > span')
+        companyNameInfo = driver.find_element(By.CSS_SELECTOR, '#mosaic-provider-jobcards > ul > li:nth-child(' + str(i) + ') > div.cardOutline > div.slider_container.eu4oa1w0 > div > div.slider_item.eu4oa1w0 > div > table.big6_visualChanges > tbody > tr > td > div.company_location > div > span')
         jobTitles.append(jobTitleInfo.text)
         companyNames.append(companyNameInfo.text)
         
-        moreInfoPage = driver.find_element(By.CSS_SELECTOR, '#mosaic-provider-jobcards > ul > li:nth-child(' + str(i) + ') > div.cardOutline > div.slider_container.css-8xisqv.eu4oa1w0 > div > div.slider_item.css-kyg8or.eu4oa1w0 > div > table.jobCard_mainContent.big6_visualChanges > tbody > tr > td > div.e37uo190 > h2 > a')   
+        moreInfoPage = driver.find_element(By.CSS_SELECTOR, '#mosaic-provider-jobcards > ul > li:nth-child(' + str(i) + ') > div.cardOutline > div.slider_container.eu4oa1w0 > div > div.slider_item.eu4oa1w0 > div > table.big6_visualChanges > tbody > tr > td > div.e37uo190 > h2 > a')   
         applicationLinks.append(moreInfoPage.get_attribute('href'))
                   
     except NoSuchElementException:
         pass
     i += 1
+
 
 #Fills information gathered from indeed and stores within Google Sheets sheet titled Job Postings Information
 sh = gc.open('Job Postings Information')
